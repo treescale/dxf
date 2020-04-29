@@ -270,9 +270,6 @@ class DXFBase(object):
             raise exceptions.DXFUnexpectedStatusCodeError(response.status_code,
                                                           requests.codes.unauthorized)
 
-        if self._insecure:
-            raise exceptions.DXFAuthInsecureError()
-
         parsed = www_authenticate.parse(response.headers['www-authenticate'])
 
         if username is not None and password is not None:
