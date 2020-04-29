@@ -302,7 +302,10 @@ class DXFBase(object):
                 'scope': scope
             })
             url_parts[4] = urlencode(query, True)
-            url_parts[0] = 'https'
+            if self._insecure:
+                url_parts[0] = 'http'
+            else:
+                url_parts[0] = 'https'
             if self._auth_host:
                 url_parts[1] = self._auth_host
             auth_url = urlparse.urlunparse(url_parts)
